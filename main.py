@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, Response, stream_with_context
+﻿from flask import Flask, render_template, request, jsonify, Response, stream_with_context
 from google import genai
 from google.genai import types
 import json
@@ -40,7 +40,7 @@ def chat():
     def gen():
         rep = ""
         try:
-            cs = client.chats.create(model="gemini-2.0-flash", config=types.GenerateContentConfig(system_instruction=sys2), history=hist)
+            cs = client.chats.create(model="gemini-1.5-flash", config=types.GenerateContentConfig(system_instruction=sys2), history=hist)
             for chunk in cs.send_message_stream(last):
                 if chunk.text:
                     rep += chunk.text
@@ -72,3 +72,5 @@ def clear_memory():
 if __name__ == "__main__":
     print("Sophia -> http://localhost:5000")
     app.run(debug=False, host="0.0.0.0", port=5000, threaded=True)
+
+
